@@ -1,0 +1,10 @@
+*__pycache__*
+.tox/*
+*.DS_Store
+*.json
+*.sqlite3
+*.egg-info
+*.pyc
+.cache/*
+settings_local.py
+static/*

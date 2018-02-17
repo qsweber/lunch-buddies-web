@@ -1,0 +1,9 @@
+html, body {
+    height: 100%;
+}
+
+.container-main {
+    font-size: 22px;
+    font-family: 'Cabin', sans-serif;
+    font-weight: 400;
+}
