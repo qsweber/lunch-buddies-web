@@ -34,26 +34,50 @@
         <a href="https://ahlfhssbq3.execute-api.us-west-2.amazonaws.com/production/api/v0/install"><img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" /></a>
         <h2>What is lunch buddies?</h2>
         <p>
-            This app helps build relationships between members of a growing team. Each week, users will have the opportunity to join a small group of teammates for lunch. The @lunch_buddies_bot takes care of all the logistics.
+            This app helps build relationships between members of a growing team. Each week, users will have the opportunity to join a small group of teammates for lunch. The <code>@lunch_buddies_bot</code> takes care of all the logistics.
         </p>
         <h2>How does it work?</h2>
+        <h3>Installation</h3>
+        <p>Install the app using the button at the top of this page, or from the <a href="https://slack.com/apps/A8Z9J2Z1S-lunch-buddies">Slack App Directory</a>.</p>
+        <h3>Basic Usage</h2>
+        <h4>Step 1: Invite your teammates to the "#lunch_buddies" channel</h4>
         <p>
-            To initiate the process, invite @lunch_buddies_bot to a channel and say "@lunch_buddies_bot create". This will send a message to each member of the current channel asking if they want to participate.
+            The app works by polling the members of a Slack channel to see who is interested in participating.
+            When you installed the app, a default "#lunch_buddies" channel was created. You should invite your teammates to this channel.
+        </p>
+        <h4>Step 2: Create the poll</h4>
+        <p>
+            To initiate the process, type the following message in the #lunch_buddies channel.
+            <br /><img source="/img/create_1.png" />
         </p>
         <p>
-            The default possible answers are: "Yes (12:00)", and "No". You may also specify a set of custom times. For example, "@lunch_buddies_bot create 1145, 1230" will create a poll whose possible answers are "Yes (11:45)", "Yes (12:30)" and "No". You do not need to explicitly set "no" as an option; it is included by default.
+            <b>Advanced Options</b>
         </p>
         <p>
-            You may also use the "/lunch_buddies_create" command. This slash command can be invoked from anywhere in slack and it will poll the members of the "#lunch_buddies" channel. This is the "legacy" way of creating a poll.
+            You can customize both the times of the poll and the size of the groups. Here are a few examples:
+            <br /><img source="/img/create_2.png" />
+            <br /><img source="/img/create_3.png" />
+        </p>
+        <h4>Step 3: Respond to the poll</h4>
+        <p>
+            After receiving the <code>create</code> command, the bot will individually poll the members of the channel asking about participation.
+            <br /><img source="/img/poll.png" />
         </p>
         <p>
-            Once everyone has answered, you should go back to the same channel from which the poll was created and write "@lunch_buddies_bot close". This will randomly group the responders by their answer and start a private group message for each group. For example, if 60 people said "Yes (11:45)" and 30 people said "Yes (12:30)", @lunch_buddies_bot will create 10 random groups for the 11:45 time and 5 random groups for the 12:30 time.
+            Participants can select their time preference or opt out.
+        </p>
+        <h4>Step 4: Close the poll</h4>
+        <p>Navigate back to the "#lunch_buddies" channel and type the following message:
+            <br /><img source="/img/close.png" />
         </p>
         <p>
-            If you created the poll with the slack command "/lunch_buddies_create", you should close it with the slash command "/lunch_buddies_close".
+            The bot will randomly group people and start a group chat between all of them.
+            <br /><img source="/img/group.png" />
         </p>
+        <h3>Advanced Usage</h3>
         <p>
-            It is possible to have multiple polls going at the same time; they are uniquely defined by the channel from which they were created. For example, you can go to the #seattle_office channel and say "@lunch_buddies_bot create", and then go right to the #san_francisco_office channel and say "@lunch_buddies_bot create". Members of each channel will be independently polled and grouped.
+            It is possible to have multiple polls going at the same time; they are uniquely defined by the channel from which they were created.
+            For example, you could "create" a poll in the #seattle_office channel and also in the #san_francisco_office channel. Members of each channel will be independently polled and grouped.
         </p>
         <h2 id="privacy">Privacy policy</h2>
         <p>
@@ -61,7 +85,7 @@
         </p>
         <h2 id="support">Support</h2>
         <p>
-            If you have any questions/comments/concerns/etc, please send an email to <a href="mailto:lunchbuddies@quinnweber.com">lunchbuddies@quinnweber.com</a>
+            If you have any questions or feature requests, please send me an email at <a href="mailto:quinn@lunchbuddiesapp.com">quinn@lunchbuddiesapp.com</a>.
         </p>
     </div>
 </body>
