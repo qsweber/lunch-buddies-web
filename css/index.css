@@ -2,8 +2,18 @@ html, body {
     height: 100%;
 }
 
-.instructions {
-    height: 40px;
+.markdown-body {
+    box-sizing: border-box;
+    min-width: 200px;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 45px;
+}
+
+@media (max-width: 767px) {
+    .markdown-body {
+        padding: 15px;
+    }
 }
 
 .copy {
@@ -19,4 +29,36 @@ html, body {
 
 .example {
     width: 440px;
+}
+
+.collapsible {
+    cursor: pointer;
+    padding-bottom: 8px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: inherit;
+    font-weight: 600;
+}
+
+.collapsible:after {
+    content: '\203A';
+    font-weight: bold;
+    float: left;
+    margin-right: 5px;
+    width: 8px;
+}
+
+.active:after {
+    content: "\2212";
+    width: 8px;
+}
+
+.content {
+    padding: 0 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    /* background-color: #f1f1f1; */
 }
