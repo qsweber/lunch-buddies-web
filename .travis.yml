@@ -5,6 +5,9 @@ language: python
 python: 3.6
 install: pip install awscli
 script:
-- aws s3 sync --exclude '.git/*' --exclude 'README.md' --exclude '.travis.yml' --acl public-read --delete . s3://lunchbuddies.quinnweber.com
+- npm run build
+- npm run export
+- aws s3 sync --acl public-read --delete ./out s3://next.quinnweber.com
+- test $TRAVIS_BRANCH = "master" && aws s3 sync --acl public-read --delete ./out s3://lunchbuddies.quinnweber.com
 - aws configure set preview.cloudfront true
-- aws cloudfront create-invalidation --distribution-id E3TB6WBWJWWQF1 --paths '/*'
+- test $TRAVIS_BRANCH = "master" && aws cloudfront create-invalidation --distribution-id E3TB6WBWJWWQF1 --paths '/*'
