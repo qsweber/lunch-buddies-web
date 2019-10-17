@@ -31,7 +31,7 @@ const Layout: React.FunctionComponent<Props> = (props: Props) => {
           {
             links.map(l => (
               <Link href={l.href}>
-                <a>{l.text}</a>
+                <a>{l.text} </a>
               </Link>
             ))
           }
