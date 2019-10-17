@@ -2,6 +2,7 @@ language: python
 python: 3.6
 install: pip install awscli
 script:
+- npm install
 - npm run build
 - npm run export
 - aws s3 sync --acl public-read --delete ./out s3://next.quinnweber.com
