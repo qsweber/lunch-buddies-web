@@ -14,7 +14,8 @@ const mainStyle = {
   lineHeight: "24px",
   maxWidth: "750px",
   width: "100%",
-  margin: "0 auto"
+  margin: "0 auto",
+  marginTop: "20px"
 };
 
 const Layout: React.FunctionComponent<Props> = ({
