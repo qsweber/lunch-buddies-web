@@ -19,7 +19,7 @@ const mainStyle = {
 
 const Layout: React.FunctionComponent<Props> = ({
   children,
-  title = "This is the default title"
+  title = "Lunch Buddies"
 }) => (
   <div style={mainStyle}>
     <Head>
