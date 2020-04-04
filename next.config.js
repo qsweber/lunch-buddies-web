@@ -16,6 +16,12 @@ module.exports = {
             '/registration': {
                 page: '/registration'
             },
+            '/pricing': {
+                page: '/pricing'
+            },
+            '/how_it_works': {
+                page: '/how_it_works'
+            },
         }
     },
 }

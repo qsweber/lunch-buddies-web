@@ -10,6 +10,7 @@ const Registration: NextPage = () => (
       <a href="mailto:support@lunchbuddiesapp.com">
         support@lunchbuddiesapp.com
       </a>
+      .
     </p>
   </Layout>
 );

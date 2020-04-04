@@ -15,14 +15,14 @@ const mainStyle = {
   maxWidth: "750px",
   width: "100%",
   margin: "0 auto",
-  marginTop: "20px"
+  marginTop: "20px",
 };
 
 const Layout: React.FunctionComponent<Props> = ({
   children,
-  title = "Lunch Buddies"
+  title = "Lunch Buddies",
 }) => (
-  <div style={mainStyle}>
+  <div>
     <Head>
       <title>{title}</title>
       <meta charSet="utf-8" />
@@ -31,25 +31,28 @@ const Layout: React.FunctionComponent<Props> = ({
         href="https://fonts.googleapis.com/css?family=Work+Sans"
         rel="stylesheet"
       ></link>
-      <style jsx global>{`
-        html {
-          overflow-y: scroll;
-        }
-      `}</style>
     </Head>
-    <header style={{ display: "flex" }}>
-      <img
-        src="/img/logo.png"
-        style={{ height: "40px", borderRadius: "5px" }}
-      />
-      <nav
-        style={{ marginLeft: "auto", marginTop: "auto", marginBottom: "auto" }}
-      >
-        <UnderLinedLink pathName="/" title="Home" /> |{" "}
-        <UnderLinedLink pathName="/registration" title="Registration" />{" "}
-      </nav>
-    </header>
-    {children}
+    <div style={mainStyle}>
+      <header style={{ display: "flex" }}>
+        <a href="/">
+          <img
+            src="/img/logo.png"
+            style={{ height: "40px", borderRadius: "5px" }}
+          />
+        </a>
+        <nav
+          style={{
+            marginLeft: "auto",
+            marginTop: "auto",
+            marginBottom: "auto",
+          }}
+        >
+          <UnderLinedLink pathName="/how_it_works" title="How It Works" /> |{" "}
+          <UnderLinedLink pathName="/pricing" title="Pricing" />{" "}
+        </nav>
+      </header>
+      {children}
+    </div>
   </div>
 );
 
