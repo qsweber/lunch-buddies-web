@@ -9,9 +9,8 @@ type Props = {
 
 const mainStyle = {
   fontSize: "18px",
-  fontFamily: "Work Sans",
+  fontFamily: "Inter",
   fontWeight: 400,
-  lineHeight: "24px",
   maxWidth: "750px",
   width: "100%",
   margin: "0 auto",
@@ -28,12 +27,29 @@ const Layout: React.FunctionComponent<Props> = ({
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <link
-        href="https://fonts.googleapis.com/css?family=Work+Sans"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
         rel="stylesheet"
       ></link>
+      <link
+        href="/static/favicons/apple-touch-icon.png"
+        rel="apple-touch-icon"
+        sizes="180x180"
+      />
+      <link
+        href="/static/favicons/favicon-32x32.png"
+        rel="icon"
+        sizes="32x32"
+        type="image/png"
+      />
+      <link
+        href="/static/favicons/favicon-16x16.png"
+        rel="icon"
+        sizes="16x16"
+        type="image/png"
+      />
     </Head>
-    <div style={mainStyle}>
-      <header style={{ display: "flex" }}>
+    <main>
+      <header>
         <a href="/">
           <img
             src="/img/logo.png"
@@ -47,12 +63,32 @@ const Layout: React.FunctionComponent<Props> = ({
             marginBottom: "auto",
           }}
         >
-          <UnderLinedLink pathName="/how_it_works" title="How It Works" /> |{" "}
-          <UnderLinedLink pathName="/pricing" title="Pricing" />{" "}
+          <UnderLinedLink pathName="/how_it_works" title="How It Works" />
+          <UnderLinedLink pathName="/pricing" title="Pricing" />
         </nav>
       </header>
       {children}
-    </div>
+    </main>
+    <style jsx>{`
+      * {
+        box-sizing: border-box;
+      }
+
+      header {
+        display: flex;
+        margin-top: 1.5rem;
+      }
+
+      main {
+        font-size: 18px;
+        font-family: Inter;
+        font-weight: 400;
+        max-width: 750px;
+        width: 100%;
+        margin: 0px auto;
+        padding: 0px 5px;
+      }
+    `}</style>
   </div>
 );
 

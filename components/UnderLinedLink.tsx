@@ -9,7 +9,7 @@ type Props = {
 
 const UnderLinedLink: React.FunctionComponent<Props> = ({
   pathName,
-  title
+  title,
 }) => {
   const router = useRouter();
   return (
@@ -17,7 +17,9 @@ const UnderLinedLink: React.FunctionComponent<Props> = ({
       <a
         style={{
           textDecoration: router.pathname === pathName ? "underline" : "none",
-          color: "inherit"
+          color: "inherit",
+          marginLeft: "20px",
+          fontWeight: 600,
         }}
       >
         {title}
