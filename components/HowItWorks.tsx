@@ -1,13 +1,14 @@
 import * as React from "react";
 
 const imgStyle = {
-  width: "440px",
+  width: "100%",
+  maxWidth: "440px",
 };
 
 const HowItWorks: React.FunctionComponent = () => {
   return (
     <div>
-      <h2>Getting Started</h2>
+      <h2 className="newSection">Getting Started</h2>
       <h3>
         Step 1: Invite your teammates to the <code>#lunch_buddies</code> channel
       </h3>
@@ -25,19 +26,13 @@ const HowItWorks: React.FunctionComponent = () => {
           To initiate the process, type the following message in the
           #lunch_buddies channel.
         </p>
-        <p>
-          <img src="/img/create_1.png" style={imgStyle} />
-        </p>
+        <img src="/img/create_1.png" style={imgStyle} />
         <p>
           You can customize both the times of the poll and the size of the
           groups. Here are a few examples:
         </p>
-        <p>
-          <img src="/img/create_2.png" style={imgStyle} />
-        </p>
-        <p>
-          <img src="/img/create_3.png" style={imgStyle} />
-        </p>
+        <img src="/img/create_2.png" style={imgStyle} />
+        <img src="/img/create_3.png" style={imgStyle} />
         <p>
           It is possible to have multiple polls going at the same time; they are
           uniquely defined by the channel from which they were created. For
@@ -75,6 +70,16 @@ const HowItWorks: React.FunctionComponent = () => {
           <img src="/img/group.png" style={imgStyle} />
         </p>
       </div>
+      <style jsx>{`
+        .newSection {
+          margin-top: 5rem;
+        }
+
+        h3 {
+          margin-top: 2.5rem;
+          font-weight: 600;
+        }
+      `}</style>
     </div>
   );
 };
