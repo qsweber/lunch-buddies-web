@@ -19,7 +19,7 @@ jobs:
       run: |
         npm install && npm run build && npm run export
     - name: deploy
-      if: github.event == 'push'
+      if: github.event_name == 'push'
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
