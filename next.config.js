@@ -22,6 +22,9 @@ module.exports = {
             '/how_it_works': {
                 page: '/how_it_works'
             },
+            '/tos': {
+                page: '/tos'
+            },
         }
     },
 }
