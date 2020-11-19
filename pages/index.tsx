@@ -37,6 +37,21 @@ const Home: NextPage = () => (
       group. The only information saved is the answers to the interactive
       question about participating.
     </p>
+    <h3>
+      Access Your Data
+    </h3>
+    <p>
+      If you would like to access your user data, please email
+      {" "}<a href="mailto:support@lunchbuddiesapp.com">support@lunchbuddiesapp.com</a>{" "}
+      and request it. We will send a copy of your data within 30 days from the date of the request.
+    </p>
+    <h3>Delete Your Data</h3>
+    <p>
+      After Lunch Buddies is removed from your workspace, please email
+      {" "}<a href="mailto:support@lunchbuddiesapp.com">support@lunchbuddiesapp.com</a>{" "}
+      to request that we remove all user data related to the workspace.
+      We will delete your data within 30 days from the date of the request.
+    </p>
     <h2 id="support" className="newSection">
       Support
     </h2>
