@@ -17,7 +17,7 @@ const Home: NextPage = () => (
     </p>
     <h2 className="newSection">Installation</h2>
     <p>Get started using Lunch Buddies with just a few clicks!</p>
-    <a href="https://ahlfhssbq3.execute-api.us-west-2.amazonaws.com/production/api/v0/install">
+    <a href="https://slack.com/oauth/v2/authorize?client_id=329629657296.305324101060&scope=app_mentions:read,channels:read,chat:write,commands,groups:read">
       <img
         alt="Add to Slack"
         height="40"
