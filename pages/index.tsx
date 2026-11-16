@@ -11,9 +11,9 @@ const Home: NextPage = () => (
   <Layout>
     <h1>Lunch Buddies 🥙</h1>
     <p className="subhead">
-      This app helps build relationships between teammates by scheduling
-      participants into random groups for lunch. The @lunch_buddies_bot takes
-      care of all the logistics.
+      A free Slack app that helps build relationships between teammates by
+      matching them into random groups for lunch. Lunch Buddies takes care of
+      all the logistics.
     </p>
     <h2 className="newSection">Installation</h2>
     <p>Get started using Lunch Buddies with just a few clicks!</p>

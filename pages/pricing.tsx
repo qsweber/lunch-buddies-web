@@ -3,18 +3,15 @@ import Layout from "../components/Layout";
 
 const Pricing: NextPage = () => (
   <Layout>
-    <h2>Try Lunch Buddies free for 30 Days!</h2>
-    <p>After that, it's just $1 per user per month.</p>
+    <h2>Lunch Buddies is free</h2>
     <p>
-      On the first day of each month, you'll recieve an invoice for the previous
-      month. For each user that participated in a Lunch Buddies group, you'll be
-      charged $1.
+      There's no trial period and no per-user charge. Add Lunch Buddies to your
+      workspace and use it as often as you like.
     </p>
     <p>
-      If you have any questions about this, or if you don't think your team has
-      it in the budget, please reach out to us at{" "}
-      <a href="mailto:pricing@lunchbuddiesapp.com">
-        pricing@lunchbuddiesapp.com
+      If you have any questions, please reach out to us at{" "}
+      <a href="mailto:support@lunchbuddiesapp.com">
+        support@lunchbuddiesapp.com
       </a>
       .
     </p>
