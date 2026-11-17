@@ -12,18 +12,19 @@ const UnderLinedLink: React.FunctionComponent<Props> = ({
   title,
 }) => {
   const router = useRouter();
+  // trailingSlash: true means the router may report "/pricing/".
+  const isActive = router.pathname.replace(/\/$/, "") === pathName;
   return (
-    <Link href={pathName}>
-      <a
-        style={{
-          textDecoration: router.pathname === pathName ? "underline" : "none",
-          color: "inherit",
-          marginLeft: "20px",
-          fontWeight: 600,
-        }}
-      >
-        {title}
-      </a>
+    <Link
+      href={pathName}
+      style={{
+        textDecoration: isActive ? "underline" : "none",
+        color: "inherit",
+        marginLeft: "20px",
+        fontWeight: 600,
+      }}
+    >
+      {title}
     </Link>
   );
 };

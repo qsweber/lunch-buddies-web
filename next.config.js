@@ -1,30 +1,14 @@
-module.exports = {
-    exportTrailingSlash: true,
-    exportPathMap: async function (
-        defaultPathMap, {
-            dev,
-            dir,
-            outDir,
-            distDir,
-            buildId
-        }
-    ) {
-        return {
-            '/': {
-                page: '/'
-            },
-            '/registration': {
-                page: '/registration'
-            },
-            '/pricing': {
-                page: '/pricing'
-            },
-            '/how_it_works': {
-                page: '/how_it_works'
-            },
-            '/tos': {
-                page: '/tos'
-            },
-        }
-    },
-}
+// `npm run build` uses webpack (`next build --webpack`) rather than
+// Turbopack, matching website-template.
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  output: "export",
+  trailingSlash: true,
+  images: {
+    unoptimized: true,
+  },
+  productionBrowserSourceMaps: true,
+};
+
+module.exports = nextConfig;

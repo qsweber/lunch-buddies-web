@@ -1,20 +1,12 @@
 import * as React from "react";
 import Head from "next/head";
+import Link from "next/link";
 
 import UnderLinedLink from "./UnderLinedLink";
 
 type Props = {
   title?: string;
-};
-
-const mainStyle = {
-  fontSize: "18px",
-  fontFamily: "Inter",
-  fontWeight: 400,
-  maxWidth: "750px",
-  width: "100%",
-  margin: "0 auto",
-  marginTop: "20px",
+  children?: React.ReactNode;
 };
 
 const Layout: React.FunctionComponent<Props> = ({
@@ -26,10 +18,6 @@ const Layout: React.FunctionComponent<Props> = ({
       <title>{title}</title>
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
-        rel="stylesheet"
-      ></link>
       <link
         href="/static/favicons/apple-touch-icon.png"
         rel="apple-touch-icon"
@@ -50,12 +38,13 @@ const Layout: React.FunctionComponent<Props> = ({
     </Head>
     <main>
       <header>
-        <a href="/">
+        <Link href="/">
           <img
             src="/img/logo.png"
+            alt="Lunch Buddies"
             style={{ height: "40px", borderRadius: "5px" }}
           />
-        </a>
+        </Link>
         <nav
           style={{
             marginLeft: "auto",

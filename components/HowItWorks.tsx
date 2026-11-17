@@ -26,19 +26,31 @@ const HowItWorks: React.FunctionComponent = () => {
           To initiate the process, type the following message in the
           #lunch_buddies channel.
         </p>
-        <img src="/img/create_1.png" style={imgStyle} />
+        <img
+          src="/img/create_1.png"
+          alt="Typing the create command"
+          style={imgStyle}
+        />
         <p>
           You can customize both the times of the poll and the size of the
           groups. Here are a few examples:
         </p>
-        <img src="/img/create_2.png" style={imgStyle} />
-        <img src="/img/create_3.png" style={imgStyle} />
+        <img
+          src="/img/create_2.png"
+          alt="Create command with custom times"
+          style={imgStyle}
+        />
+        <img
+          src="/img/create_3.png"
+          alt="Create command with a custom group size"
+          style={imgStyle}
+        />
         <p>
           It is possible to have multiple polls going at the same time; they are
           uniquely defined by the channel from which they were created. For
-          example, you could "create" a poll in the #seattle_office channel and
-          also in the #san_francisco_office channel. Members of each channel
-          will be independently polled and grouped.
+          example, you could &quot;create&quot; a poll in the #seattle_office
+          channel and also in the #san_francisco_office channel. Members of each
+          channel will be independently polled and grouped.
         </p>
       </div>
       <h3>Step 3: Respond to the poll</h3>
@@ -49,25 +61,37 @@ const HowItWorks: React.FunctionComponent = () => {
           participation.
         </p>
         <p>
-          <img src="/img/poll.png" style={imgStyle} />
+          <img
+            src="/img/poll.png"
+            alt="Poll message from the bot"
+            style={imgStyle}
+          />
         </p>
         <p>Participants can select their time preference or opt out.</p>
       </div>
       <h3>Step 4: Close the poll</h3>
       <div>
         <p>
-          Navigate back to the "#lunch_buddies" channel and type the following
-          message:
+          Navigate back to the &quot;#lunch_buddies&quot; channel and type the
+          following message:
         </p>
         <p>
-          <img src="/img/close.png" style={imgStyle} />
+          <img
+            src="/img/close.png"
+            alt="Typing the close command"
+            style={imgStyle}
+          />
         </p>
         <p>
           The bot will randomly group people and start a group chat between all
           of them.
         </p>
         <p>
-          <img src="/img/group.png" style={imgStyle} />
+          <img
+            src="/img/group.png"
+            alt="Group chat created by the bot"
+            style={imgStyle}
+          />
         </p>
       </div>
       <style jsx>{`
