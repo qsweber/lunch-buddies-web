@@ -1,17 +1,28 @@
-import * as React from "react";
+"use client";
 
-const imgStyle = {
+import styled from "@emotion/styled";
+
+const NewSection = styled.h2(() => ({
+  marginTop: "5rem",
+}));
+
+const H3 = styled.h3(() => ({
+  marginTop: "2.5rem",
+  fontWeight: 600,
+}));
+
+const Img = styled.img(() => ({
   width: "100%",
-  maxWidth: "440px",
-};
+  maxWidth: 440,
+}));
 
-const HowItWorks: React.FunctionComponent = () => {
+export function HowItWorks() {
   return (
     <div>
-      <h2 className="newSection">Getting Started</h2>
-      <h3>
+      <NewSection>Getting Started</NewSection>
+      <H3>
         Step 1: Invite your teammates to the <code>#lunch_buddies</code> channel
-      </h3>
+      </H3>
       <div>
         <p>
           The app works by polling the members of a Slack channel to see who is
@@ -20,30 +31,21 @@ const HowItWorks: React.FunctionComponent = () => {
           your teammates to this channel.
         </p>
       </div>
-      <h3>Step 2: Create the poll</h3>
+      <H3>Step 2: Create the poll</H3>
       <div>
         <p>
           To initiate the process, type the following message in the
           #lunch_buddies channel.
         </p>
-        <img
-          src="/img/create_1.png"
-          alt="Typing the create command"
-          style={imgStyle}
-        />
+        <Img src="/img/create_1.png" alt="Typing the create command" />
         <p>
           You can customize both the times of the poll and the size of the
           groups. Here are a few examples:
         </p>
-        <img
-          src="/img/create_2.png"
-          alt="Create command with custom times"
-          style={imgStyle}
-        />
-        <img
+        <Img src="/img/create_2.png" alt="Create command with custom times" />
+        <Img
           src="/img/create_3.png"
           alt="Create command with a custom group size"
-          style={imgStyle}
         />
         <p>
           It is possible to have multiple polls going at the same time; they are
@@ -53,7 +55,7 @@ const HowItWorks: React.FunctionComponent = () => {
           channel will be independently polled and grouped.
         </p>
       </div>
-      <h3>Step 3: Respond to the poll</h3>
+      <H3>Step 3: Respond to the poll</H3>
       <div>
         <p>
           After receiving the <code>create</code> command, the bot will
@@ -61,51 +63,27 @@ const HowItWorks: React.FunctionComponent = () => {
           participation.
         </p>
         <p>
-          <img
-            src="/img/poll.png"
-            alt="Poll message from the bot"
-            style={imgStyle}
-          />
+          <Img src="/img/poll.png" alt="Poll message from the bot" />
         </p>
         <p>Participants can select their time preference or opt out.</p>
       </div>
-      <h3>Step 4: Close the poll</h3>
+      <H3>Step 4: Close the poll</H3>
       <div>
         <p>
           Navigate back to the &quot;#lunch_buddies&quot; channel and type the
           following message:
         </p>
         <p>
-          <img
-            src="/img/close.png"
-            alt="Typing the close command"
-            style={imgStyle}
-          />
+          <Img src="/img/close.png" alt="Typing the close command" />
         </p>
         <p>
           The bot will randomly group people and start a group chat between all
           of them.
         </p>
         <p>
-          <img
-            src="/img/group.png"
-            alt="Group chat created by the bot"
-            style={imgStyle}
-          />
+          <Img src="/img/group.png" alt="Group chat created by the bot" />
         </p>
       </div>
-      <style jsx>{`
-        .newSection {
-          margin-top: 5rem;
-        }
-
-        h3 {
-          margin-top: 2.5rem;
-          font-weight: 600;
-        }
-      `}</style>
     </div>
   );
-};
-
-export default HowItWorks;
+}
