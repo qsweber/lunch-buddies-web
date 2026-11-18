@@ -1,0 +1,14 @@
+{
+  "env": "production",
+  "account": "120356305272",
+  "region": "us-west-2",
+  "bucketName": "lunchbuddies.quinnweber.com",
+  "originId": "S3-lunchbuddies.quinnweber.com",
+  "aliases": ["lunchbuddiesapp.com", "www.lunchbuddiesapp.com"],
+  "certificateArn": "arn:aws:acm:us-east-1:120356305272:certificate/3129cdbd-33dd-4606-b0a9-1aa188dc4f3e",
+  "records": [
+    { "zoneId": "Z06652991WJMIVK3Y60MY", "name": "lunchbuddiesapp.com", "type": "A" },
+    { "zoneId": "Z06652991WJMIVK3Y60MY", "name": "lunchbuddiesapp.com", "type": "AAAA" },
+    { "zoneId": "Z06652991WJMIVK3Y60MY", "name": "www.lunchbuddiesapp.com", "type": "CNAME" }
+  ]
+}

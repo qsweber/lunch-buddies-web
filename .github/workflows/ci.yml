@@ -1,0 +1,178 @@
+name: CI Workflow
+
+on:
+  workflow_call:
+    inputs:
+      stack:
+        required: true
+        type: string
+        description: "CDK stack environment suffix (dev or production)"
+      environment:
+        required: true
+        type: string
+        description: "GitHub environment name (dev or production)"
+      run-deploy:
+        required: false
+        type: boolean
+        default: true
+        description: "Whether to run deployment step"
+
+permissions:
+  id-token: write # for AWS OIDC (aws-actions/configure-aws-credentials)
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - run: npm ci
+      - run: npm run test
+      - run: npx prettier . --check
+      - run: npm run lint
+
+  cdk-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - run: cd cdk && npm ci
+      - run: cd cdk && npx tsc --noEmit
+      - run: cd cdk && npx cdk synth --all
+
+  infra:
+    runs-on: ubuntu-latest
+    needs: [cdk-checks]
+    outputs:
+      distributionId: ${{ steps.cdk-outputs.outputs.distributionId }}
+      siteUrl: ${{ steps.cdk-outputs.outputs.siteUrl }}
+      s3BucketUri: ${{ steps.cdk-outputs.outputs.s3BucketUri }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::120356305272:role/github-actions-deploy
+          aws-region: us-west-2
+      - run: cd cdk && npm ci
+      - name: Deploy infrastructure
+        run: cd cdk && npx cdk deploy lunch-buddies-web-${{ inputs.stack }} --require-approval never
+      - id: cdk-outputs
+        run: |
+          STACK_NAME=lunch-buddies-web-${{ inputs.stack }}
+          DISTRIBUTION_ID=$(aws cloudformation describe-stacks --stack-name "$STACK_NAME" --region "$AWS_REGION" --query "Stacks[0].Outputs[?OutputKey=='DistributionId'].OutputValue" --output text)
+          SITE_URL=$(aws cloudformation describe-stacks --stack-name "$STACK_NAME" --region "$AWS_REGION" --query "Stacks[0].Outputs[?OutputKey=='SiteUrl'].OutputValue" --output text)
+          S3_BUCKET_URI=$(aws cloudformation describe-stacks --stack-name "$STACK_NAME" --region "$AWS_REGION" --query "Stacks[0].Outputs[?OutputKey=='S3BucketUri'].OutputValue" --output text)
+          echo "distributionId=$DISTRIBUTION_ID" >> $GITHUB_OUTPUT
+          echo "siteUrl=$SITE_URL" >> $GITHUB_OUTPUT
+          echo "s3BucketUri=$S3_BUCKET_URI" >> $GITHUB_OUTPUT
+
+  build:
+    runs-on: ubuntu-latest
+    needs: [test, infra]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - run: npm ci
+      - run: npm run build
+      - run: zip -r build.zip out/*
+      - uses: actions/upload-artifact@v7
+        with:
+          name: build-${{ inputs.stack }}
+          path: build.zip
+
+  smoke-test:
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - uses: actions/download-artifact@v8
+        with:
+          name: build-${{ inputs.stack }}
+      - run: unzip build.zip
+      - run: npx playwright test
+      - uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: playwright-report-${{ inputs.stack }}
+          path: playwright-report/
+          retention-days: 7
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [test, infra, build, smoke-test]
+    if: ${{ inputs.run-deploy }}
+    environment: ${{ inputs.environment }}
+    outputs:
+      invalidationId: ${{ steps.invalidate.outputs.invalidationId }}
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          name: build-${{ inputs.stack }}
+      - run: unzip build.zip
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::120356305272:role/github-actions-deploy
+          aws-region: us-west-2
+      - run: aws s3 sync --acl public-read --delete ./out ${{ needs.infra.outputs.s3BucketUri }}
+      - run: aws configure set preview.cloudfront true
+      - id: invalidate
+        run: |
+          INVALIDATION_ID=$(aws cloudfront create-invalidation --distribution-id ${{ needs.infra.outputs.distributionId }} --paths '/*' --query 'Invalidation.Id' --output text)
+          echo "invalidationId=$INVALIDATION_ID" >> $GITHUB_OUTPUT
+
+  post-deploy-check:
+    runs-on: ubuntu-latest
+    needs: [infra, deploy]
+    steps:
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::120356305272:role/github-actions-deploy
+          aws-region: us-west-2
+      - name: Wait for CloudFront invalidation to complete
+        run: |
+          for i in $(seq 1 30); do
+            STATUS=$(aws cloudfront get-invalidation --distribution-id "${{ needs.infra.outputs.distributionId }}" --id "${{ needs.deploy.outputs.invalidationId }}" --query 'Invalidation.Status' --output text)
+            echo "Invalidation status: $STATUS"
+            if [ "$STATUS" = "Completed" ]; then
+              exit 0
+            fi
+            sleep 10
+          done
+          echo "Invalidation did not complete within 5 minutes"
+          exit 1
+      - name: Check the live site responds correctly
+        run: |
+          set -e
+          SITE_URL="${{ needs.infra.outputs.siteUrl }}"
+
+          check() {
+            path="$1"
+            expect="$2"
+            body=$(curl -fsS --retry 5 --retry-delay 5 "$SITE_URL$path")
+            if ! echo "$body" | grep -qF "$expect"; then
+              echo "FAIL: $SITE_URL$path did not contain '$expect'"
+              exit 1
+            fi
+            echo "OK: $SITE_URL$path contains '$expect'"
+          }
+
+          check "/" "This app helps build relationships"
+          check "/how_it_works/" "Getting Started"
+          check "/pricing/" "Try Lunch Buddies free for 30 Days!"
+          check "/registration/" "Registration Complete!"
+          check "/tos/" "Terms of Service"
