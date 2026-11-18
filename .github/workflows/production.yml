@@ -1,0 +1,43 @@
+name: Production Deployment
+
+on:
+  push:
+    branches: [master]
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  ci:
+    uses: ./.github/workflows/ci.yml
+    with:
+      stack: production
+      environment: production
+      run-deploy: true
+
+  release:
+    runs-on: ubuntu-latest
+    needs: [ci]
+    permissions:
+      contents: write # create the GitHub release
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - uses: actions/download-artifact@v8
+        with:
+          name: build-production
+      - name: get-npm-version
+        id: package-version
+        run: |
+          VERSION=$(node -e "console.log(JSON.parse(fs.readFileSync('package.json')).version.replace(/\.\d+$/, ''))")
+          VERSION+=".${{ github.run_number }}"
+          echo "package-version=$(echo $VERSION)" >> $GITHUB_OUTPUT
+      - name: create release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "build.zip"
+          name: Release ${{ steps.package-version.outputs.package-version }}
+          tag: v${{ steps.package-version.outputs.package-version }}
