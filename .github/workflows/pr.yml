@@ -1,0 +1,32 @@
+name: Pull Request Workflow
+
+on:
+  pull_request:
+    branches: [master]
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  ci:
+    uses: ./.github/workflows/ci.yml
+    with:
+      stack: dev
+      environment: dev
+      run-deploy: true
+
+  production-preview:
+    name: CDK Diff (production)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::120356305272:role/github-actions-deploy
+          aws-region: us-west-2
+      - run: cd cdk && npm ci
+      - run: cd cdk && npx cdk diff lunch-buddies-web-production

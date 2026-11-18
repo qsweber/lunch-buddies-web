@@ -1,0 +1,16 @@
+{
+  "env": "dev",
+  "account": "120356305272",
+  "region": "us-west-2",
+  "bucketName": "dev.lunchbuddiesapp.com",
+  "originId": "S3-Website-dev.lunchbuddiesapp.com.s3-website-us-west-2.amazonaws.com",
+  "aliases": ["dev.lunchbuddiesapp.com"],
+  "certificateArn": "arn:aws:acm:us-east-1:120356305272:certificate/3129cdbd-33dd-4606-b0a9-1aa188dc4f3e",
+  "records": [
+    {
+      "zoneId": "Z06652991WJMIVK3Y60MY",
+      "name": "dev.lunchbuddiesapp.com",
+      "type": "CNAME"
+    }
+  ]
+}

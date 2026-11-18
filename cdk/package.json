@@ -1,0 +1,22 @@
+{
+  "name": "lunch-buddies-web-cdk",
+  "version": "0.1.0",
+  "private": true,
+  "bin": {
+    "cdk": "bin/app.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "synth": "cdk synth",
+    "diff": "cdk diff",
+    "deploy": "cdk deploy"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.0",
+    "aws-cdk": "2.1142.0",
+    "aws-cdk-lib": "2.270.0",
+    "constructs": "^10.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.0"
+  }
+}
