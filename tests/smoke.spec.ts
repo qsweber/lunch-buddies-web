@@ -11,7 +11,7 @@ import { test, expect, type Page } from "@playwright/test";
  * external services.
  */
 const routes = [
-  { path: "/", expectText: "Lunch Buddies 🥙" },
+  { path: "/", expectText: "Lunch Buddies" },
   { path: "/how_it_works", expectText: "Getting Started" },
   { path: "/pricing", expectText: "Lunch Buddies is free" },
   { path: "/registration", expectText: "Registration Complete!" },
