@@ -13,7 +13,7 @@ import { test, expect, type Page } from "@playwright/test";
 const routes = [
   { path: "/", expectText: "Lunch Buddies 🥙" },
   { path: "/how_it_works", expectText: "Getting Started" },
-  { path: "/pricing", expectText: "Try Lunch Buddies free for 30 Days!" },
+  { path: "/pricing", expectText: "Lunch Buddies is free" },
   { path: "/registration", expectText: "Registration Complete!" },
   { path: "/tos", expectText: "Terms of Service" },
 ];

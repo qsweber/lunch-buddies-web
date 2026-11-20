@@ -171,8 +171,8 @@ jobs:
             echo "OK: $SITE_URL$path contains '$expect'"
           }
 
-          check "/" "This app helps build relationships"
+          check "/" "A free Slack app that helps build relationships"
           check "/how_it_works/" "Getting Started"
-          check "/pricing/" "Try Lunch Buddies free for 30 Days!"
+          check "/pricing/" "Lunch Buddies is free"
           check "/registration/" "Registration Complete!"
           check "/tos/" "Terms of Service"

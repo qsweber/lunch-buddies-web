@@ -20,27 +20,24 @@ export function HowItWorks() {
   return (
     <div>
       <NewSection>Getting Started</NewSection>
-      <H3>
-        Step 1: Invite your teammates to the <code>#lunch_buddies</code> channel
-      </H3>
+      <H3>Step 1: Invite Lunch Buddies to a channel</H3>
       <div>
         <p>
-          The app works by polling the members of a Slack channel to see who is
-          interested in participating. When you installed the app, a default{" "}
-          <code>#lunch_buddies</code> channel was created. You should invite
-          your teammates to this channel.
+          Lunch Buddies polls the members of a Slack channel to see who wants to
+          join lunch. After you add it to your workspace, invite it to a channel
+          with the teammates you&apos;d like to have lunch with, for example by
+          typing <code>/invite @Lunch Buddies</code> in that channel. Any
+          channel works; <code>#lunch_buddies</code> is a good name for a
+          dedicated one.
         </p>
       </div>
       <H3>Step 2: Create the poll</H3>
       <div>
-        <p>
-          To initiate the process, type the following message in the
-          #lunch_buddies channel.
-        </p>
+        <p>To start a poll, type the following message in the channel:</p>
         <Img src="/img/create_1.png" alt="Typing the create command" />
         <p>
-          You can customize both the times of the poll and the size of the
-          groups. Here are a few examples:
+          You can choose the lunch times and the group size (2 to 6 people; 6 by
+          default). Here are a few examples:
         </p>
         <Img src="/img/create_2.png" alt="Create command with custom times" />
         <Img
@@ -48,40 +45,43 @@ export function HowItWorks() {
           alt="Create command with a custom group size"
         />
         <p>
-          It is possible to have multiple polls going at the same time; they are
-          uniquely defined by the channel from which they were created. For
-          example, you could &quot;create&quot; a poll in the #seattle_office
-          channel and also in the #san_francisco_office channel. Members of each
-          channel will be independently polled and grouped.
+          Each channel can have its own poll, so several teams can run polls at
+          the same time. For example, you could create a poll in{" "}
+          <code>#seattle_office</code> and another in{" "}
+          <code>#san_francisco_office</code>; the members of each channel are
+          polled and grouped independently.
         </p>
       </div>
       <H3>Step 3: Respond to the poll</H3>
       <div>
         <p>
-          After receiving the <code>create</code> command, the bot will
-          individually poll the members of the channel asking about
-          participation.
+          Lunch Buddies sends each member of the channel a direct message asking
+          if they can make it to lunch today.
         </p>
         <p>
           <Img src="/img/poll.png" alt="Poll message from the bot" />
         </p>
-        <p>Participants can select their time preference or opt out.</p>
+        <p>Everyone picks the time that suits them, or opts out.</p>
       </div>
       <H3>Step 4: Close the poll</H3>
       <div>
         <p>
-          Navigate back to the &quot;#lunch_buddies&quot; channel and type the
-          following message:
+          Once everyone has answered, go back to the channel where you created
+          the poll and type:
         </p>
         <p>
           <Img src="/img/close.png" alt="Typing the close command" />
         </p>
         <p>
-          The bot will randomly group people and start a group chat between all
-          of them.
+          Lunch Buddies randomly groups everyone who said yes, by the time they
+          picked, announces each group in the channel, and chooses one person in
+          each group to pick where to eat.
         </p>
         <p>
-          <Img src="/img/group.png" alt="Group chat created by the bot" />
+          <Img
+            src="/img/group.png"
+            alt="Lunch group announced in the channel"
+          />
         </p>
       </div>
     </div>

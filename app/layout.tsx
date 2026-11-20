@@ -5,7 +5,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Lunch Buddies",
   description:
-    "Lunch Buddies is a Slack app that schedules teammates into random groups for lunch.",
+    "Lunch Buddies is a free Slack app that matches teammates into random groups for lunch.",
   icons: {
     icon: [
       {

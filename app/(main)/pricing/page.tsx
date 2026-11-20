@@ -1,18 +1,15 @@
 export default function Pricing() {
   return (
     <>
-      <h2>Try Lunch Buddies free for 30 Days!</h2>
-      <p>After that, it&apos;s just $1 per user per month.</p>
+      <h2>Lunch Buddies is free</h2>
       <p>
-        On the first day of each month, you&apos;ll recieve an invoice for the
-        previous month. For each user that participated in a Lunch Buddies
-        group, you&apos;ll be charged $1.
+        There&apos;s no trial period and no per-user charge. Add Lunch Buddies
+        to your workspace and use it as often as you like.
       </p>
       <p>
-        If you have any questions about this, or if you don&apos;t think your
-        team has it in the budget, please reach out to us at{" "}
-        <a href="mailto:pricing@lunchbuddiesapp.com">
-          pricing@lunchbuddiesapp.com
+        If you have any questions, please reach out to us at{" "}
+        <a href="mailto:support@lunchbuddiesapp.com">
+          support@lunchbuddiesapp.com
         </a>
         .
       </p>
