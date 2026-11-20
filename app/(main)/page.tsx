@@ -24,7 +24,7 @@ const SupportBottom = styled.p(() => ({
 export default function Home() {
   return (
     <>
-      <H1>Lunch Buddies 🥙</H1>
+      <H1>Lunch Buddies</H1>
       <Subhead>
         A free Slack app that helps build relationships between teammates by
         matching them into random groups for lunch. Lunch Buddies takes care of
