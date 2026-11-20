@@ -16,6 +16,7 @@ const routes = [
   { path: "/pricing", expectText: "Lunch Buddies is free" },
   { path: "/registration", expectText: "Registration Complete!" },
   { path: "/tos", expectText: "Terms of Service" },
+  { path: "/testing", expectText: "Testing instructions" },
 ];
 
 function isFirstParty(url: string | undefined, baseURL: string): boolean {

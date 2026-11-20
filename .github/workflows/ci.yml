@@ -176,3 +176,4 @@ jobs:
           check "/pricing/" "Lunch Buddies is free"
           check "/registration/" "Registration Complete!"
           check "/tos/" "Terms of Service"
+          check "/testing/" "Testing instructions"
